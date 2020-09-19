@@ -1,0 +1,57 @@
+<section class="user-profile section m-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-lg-9 mt-25">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="widget personal-info">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th scope="col">Office Transactions</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col" class="add-transaction">
+                      <span routerLink="/create">+ Add Transaction</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Credit</th>
+                    <th scope="col">Debit</th>
+                    <th scope="col">Running Balance</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="transactions.length; else noData">
+                  <tr *ngFor="let transaction of transactions">
+                    <th scope="row">{{transaction?.createdAt}}</th>
+                    <td>{{transaction?.description}}</td>
+                    <td>{{ (transaction?.transactionType=='Credit') ? (transaction?.amount) : '' }}</td>
+                    <td>{{ (transaction?.transactionType=='Debit') ? (transaction?.amount) : '' }}</td>
+                    <td>{{transaction?.runningBalance}}</td>
+                  </tr>
+                </tbody>
+                <ng-template #noData>
+                  <tbody class="text-center">No transactions to display</tbody>
+                </ng-template>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

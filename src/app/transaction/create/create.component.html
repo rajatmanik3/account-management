@@ -1,0 +1,99 @@
+<!-- ======= Page Section ======= -->
+  <section class="user-profile section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0 mt-25">
+          <!-- Edit Personal Info -->
+          <div class="row card">
+            <div class="col-lg-12 col-md-12">
+              <div class="widget personal-info">
+                <h2 class="widget-header user">New Transaction</h2>
+                <form [formGroup]="transactionForm"
+                (ngSubmit)="manageTransaction()">
+                  <div class="form-group row">
+                      <label for="topic" class="col-sm-2 col-form-label">Transaction Type</label>
+                      <div class="col-sm-2">
+                        <select class="form-control" id="transactionType" name="transactionType" [formControl]="transactionForm.controls['transactionType']" [ngClass]="{
+                          'is-invalid':
+                          transactionForm.controls.transactionType.touched &&
+                          transactionForm.controls.transactionType.errors
+                        }">
+                          <option value=""></option>
+                          <option>Credit</option>
+                          <option>Debit</option>
+                        </select>
+                        <div
+                            *ngIf="transactionForm.controls.transactionType.touched"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="transactionForm.controls.transactionType.errors?.required">
+                              Transaction Type is required
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  <div class="form-group row">
+                    <label for="title" class="col-sm-2 col-form-label">Amount</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" id="amount" name="amount" [formControl]="transactionForm.controls['amount']" [ngClass]="{
+                        'is-invalid':
+                        transactionForm.controls.amount.touched &&
+                        transactionForm.controls.amount.errors
+                      }">
+                      <div
+                        *ngIf="transactionForm.controls.amount.touched"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="transactionForm.controls.amount.errors?.required">
+                          Amount is required
+                        </div>
+                        <div *ngIf="transactionForm.controls.amount.errors?.pattern">
+                          Please enter valid amount
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="description" name="description" [formControl]="transactionForm.controls['description']" [ngClass]="{
+                        'is-invalid':
+                        transactionForm.controls.description.touched &&
+                        transactionForm.controls.description.errors
+                      }"></textarea>
+                      <div
+                        *ngIf="transactionForm.controls.description.touched"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="transactionForm.controls.description.errors?.required">
+                          Description is required
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <div class="mb-2">
+                  <button type="submit" class="btn btn-primary mr-2" [disabled]="!transactionForm.valid"
+                    >
+                      Save
+                  </button>
+                  <button class="btn btn-warning" routerLink="/"
+                    >
+                      Cancel
+                  </button>
+                </div>
+              </form>
+                    
+            </div>
+                 
+           
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
